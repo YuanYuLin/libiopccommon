@@ -178,46 +178,46 @@ static int create_system_by_node(struct root_t *node)
         switch(node->type) {
         case ROOT_TYPE_CREATE_DIR:
             //mkdir(node->opt1, (mode_t)node->opt2);
-	    create_dir_recursive(node->opt1, (mode_t)node->opt2);
+	    create_dir_recursive((char*)node->opt1.ptr, (mode_t)node->opt2.mode);
             //mkdir(node->opt1, *((mode_t*)node->opt2));
 	break;
 	case ROOT_TYPE_CREATE_FILE:
-	    creat(node->opt1, (mode_t)node->opt2);
-	    printf("CREATE_FILE MODE %x\n", node->opt2);
+	    creat(node->opt1.ptr, (mode_t)node->opt2.mode);
+	    printf("CREATE_FILE MODE %x\n", node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_PROC:
-	    mount("proc", node->opt1, "proc", node->flags, node->opt2);
+	    mount("proc", node->opt1.ptr, "proc", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_TMPFS:
-	    mount("tmpfs", node->opt1, "tmpfs", node->flags, node->opt2);
+	    mount("tmpfs", node->opt1.ptr, "tmpfs", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_SQUASHFS:
-	    mount(node->opt1, node->opt2, "squashfs", node->flags, NULL);
+	    mount(node->opt1.ptr, node->opt2.ptr, "squashfs", node->flags, NULL);
 	break;
 	case ROOT_TYPE_CREATE_SYMBOL:
-	    unlink(node->opt2);
-	    symlink(node->opt1, node->opt2);
+	    unlink(node->opt2.ptr);
+	    symlink(node->opt1.ptr, node->opt2.ptr);
 	break;
         case ROOT_TYPE_MOUNT_DEVTMPFS:
-	    mount("udev", node->opt1, "devtmpfs", node->flags, node->opt2);
+	    mount("udev", node->opt1.ptr, "devtmpfs", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_DEVPTS:
-	    mount("lxcdevpts", node->opt1, "devpts", node->flags, node->opt2);
+	    mount("lxcdevpts", node->opt1.ptr, "devpts", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_SYSFS:
-	    mount("sysfs", node->opt1, "sysfs", node->flags, node->opt2);
+	    mount("sysfs", node->opt1.ptr, "sysfs", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_MQUEUE:
-	    mount("mqueue", node->opt1, "mqueue", node->flags, node->opt2);
+	    mount("mqueue", node->opt1.ptr, "mqueue", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_MOUNT_CGROUP:
-	    mount("cgroup", node->opt1, "cgroup", node->flags, node->opt2);
+	    mount("cgroup", node->opt1.ptr, "cgroup", node->flags, node->opt2.ptr);
 	break;
 	case ROOT_TYPE_INSERT_MODULE:
-	    install_module(node->opt1);
+	    install_module(node->opt1.ptr);
 	break;
 	case ROOT_TYPE_BIND_LOOP:
-	    bind_loopdev(node->opt1, node->opt2, node->flags);
+	    bind_loopdev(node->opt1.ptr, node->opt2.ptr, node->flags);
 	break;
 	}
 	return 0;

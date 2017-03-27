@@ -163,8 +163,13 @@ typedef void* (*task_start_fn_t)(void*);
 
 struct root_t {
     uint8_t type;
-    void *opt1;
-    void *opt2;
+    union {
+        void * ptr;
+    } opt1;
+    union {
+        void *ptr;
+        mode_t mode;
+    } opt2;
     uint32_t flags;
 };
 
