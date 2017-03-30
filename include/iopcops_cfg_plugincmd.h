@@ -1,7 +1,9 @@
-#ifndef IOPCOPS_CFG_BDB_PLUGINCMD_H
-#define IOPCOPS_CFG_BDB_PLUGINCMD_H
+#ifndef IOPCOPS_CFG_PLUGINCMD_H
+#define IOPCOPS_CFG_PLUGINCMD_H
 
-struct ops_cfg_bdb_plugincmd_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_plugincmd_t {
     void        (*loadall)(void);
     uint32_t	(*get_size)(void);
     uint8_t	(*get_enabled)(uint8_t idx_cfg);
@@ -11,7 +13,7 @@ struct ops_cfg_bdb_plugincmd_t {
     void	(*set_name)(uint8_t idx_cfg, uint8_t*);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_plugincmd);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_plugincmd);
+DEFINE_GET_INSTANCE(cfg_plugincmd, ifc);
+DEFINE_DEL_INSTANCE(cfg_plugincmd, ifc);
 
 #endif

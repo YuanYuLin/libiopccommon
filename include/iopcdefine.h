@@ -124,12 +124,12 @@
 
 #define INIT_NODE(val1,val2,val3,val4)	{((uint8_t)val1),((void*)val2),((void*)val3),((uint32_t)val4)}
 
-#define DEFINE_INSTANCE(NAME)		static struct NAME##_t* obj = NULL;
-#define DEFINE_GET_INSTANCE(NAME)	struct NAME##_t* create_instance_##NAME(void)
-#define DEFINE_DEL_INSTANCE(NAME)	void destroy_instance_##NAME(struct NAME##_t* obj)
+#define DEFINE_INSTANCE(TYPE, NAME)	static struct ops_##TYPE##_t* obj = NULL;
+#define DEFINE_GET_INSTANCE(TYPE, NAME)	struct ops_##TYPE##_t* create_instance_##TYPE##_##NAME(void)
+#define DEFINE_DEL_INSTANCE(TYPE, NAME)	void destroy_instance_##TYPE##_##NAME()
 
-#define GET_INSTANCE(NAME)		((struct NAME##_t*)create_instance_##NAME())
-#define DEL_INSTANCE(NAME)		destroy_instance_##NAME(NAME)
+#define GET_INSTANCE(TYPE, NAME)	((struct ops_##TYPE##_t*)create_instance_##TYPE##_##NAME())
+#define DEL_INSTANCE(TYPE, NAME)	destroy_instance_##TYPE##_##NAME()
 
 #define ROOT_TYPE_UNKNOW                (0)
 #define ROOT_TYPE_CREATE_DIR            (1)

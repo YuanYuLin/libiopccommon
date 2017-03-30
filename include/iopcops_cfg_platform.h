@@ -1,7 +1,9 @@
-#ifndef IOPCCFG_BDB_PLATFORM_H
-#define IOPCCFG_BDB_PLATFORM_H
+#ifndef IOPCCFG_PLATFORM_H
+#define IOPCCFG_PLATFORM_H
 
-struct ops_cfg_bdb_platform_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_platform_t {
     void        (*loadall)(void);
 //    uint8_t     (*get_cfg_idx)(void);
 //    void        (*set_cfg_idx)(uint8_t);
@@ -42,7 +44,7 @@ struct ops_cfg_bdb_platform_t {
     void	(*set_raid_device_path)(uint8_t idx_cfg, uint8_t, uint8_t, uint8_t*);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_platform);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_platform);
+DEFINE_GET_INSTANCE(cfg_platform, ifc);
+DEFINE_DEL_INSTANCE(cfg_platform, ifc);
 
 #endif

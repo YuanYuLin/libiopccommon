@@ -4,9 +4,11 @@
 #include <sys/types.h>
 
 #include "iopcdefine.h"
-#include "iopcops_misc.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_network.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_network.h"
+#include "iopcops_misc.h"
 
 #define NETDEV_SIZE		"network.cfg.size"
 #define NETDEV_TYPE		"network.cfg[%d].type"
@@ -25,7 +27,7 @@
 
 static void loadall()
 {
-    GET_INSTANCE(ops_cfg_bdb)->init();
+    GET_INSTANCE(cfg_bdb, ifc)->init();
 }
 
 static uint32_t get_no_of_networks()
@@ -173,11 +175,11 @@ static uint16_t get_consist_interfaces(uint8_t ifc_idx, uint8_t consist_ifc_idx,
 
 //static struct ops_cfg_bdb_network_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb_network);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_network)
+DEFINE_INSTANCE(cfg_network, bdb);
+DEFINE_GET_INSTANCE(cfg_network, bdb)
 {
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_network_t));
+        obj = malloc(sizeof(struct ops_cfg_network_t));
 	obj->loadall = loadall;
 	obj->get_no_networks = get_no_of_networks;
 	obj->get_type = get_network_type;
@@ -196,7 +198,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_network)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_network)
+DEFINE_DEL_INSTANCE(cfg_network, bdb)
 {
     if(obj)
         free(obj);

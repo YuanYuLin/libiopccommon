@@ -1,7 +1,9 @@
-#ifndef IOPCOPS_CFG_BDB_STATUS_H
-#define IOPCOPS_CFG_BDB_STATUS_H
+#ifndef IOPCOPS_CFG_STATUS_H
+#define IOPCOPS_CFG_STATUS_H
 
-struct ops_cfg_bdb_status_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_status_t {
     void (*set_service_starting)(uint8_t* name);
     void (*set_service_started)(uint8_t* name);
     void (*set_service_stoping)(uint8_t* name);
@@ -15,7 +17,7 @@ struct ops_cfg_bdb_status_t {
     void (*set_progress_status)(uint8_t* name, uint32_t status);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_status);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_status);
+DEFINE_GET_INSTANCE(cfg_status, ifc);
+DEFINE_DEL_INSTANCE(cfg_status, ifc);
 
 #endif

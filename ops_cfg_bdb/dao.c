@@ -6,6 +6,7 @@
 #include <db.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_misc.h"
 
@@ -17,26 +18,26 @@
 
 static void save_cfgsdb2persist(uint8_t* dbfile)
 {
-    GET_INSTANCE(ops_misc)->copy_file(CFGSDB_FLASH, PERSIST_CFGSDB_FLASH);
+    GET_INSTANCE(misc, obj)->copy_file(CFGSDB_FLASH, PERSIST_CFGSDB_FLASH);
 }
 
 static void restore_cfgsdb2default()
 {
-    GET_INSTANCE(ops_misc)->copy_file(CFGSDB_DEF, CFGSDB_FLASH);
+    GET_INSTANCE(misc, obj)->copy_file(CFGSDB_DEF, CFGSDB_FLASH);
 }
 
 static void save_persist2cfgsdb()
 {
-    GET_INSTANCE(ops_misc)->copy_file(PERSIST_CFGSDB_FLASH, CFGSDB_FLASH);
+    GET_INSTANCE(misc, obj)->copy_file(PERSIST_CFGSDB_FLASH, CFGSDB_FLASH);
 }
 
 static void init_db(void)
 {
-    if(GET_INSTANCE(ops_misc)->is_exist(CFGSDB_FLASH) < 0) {
+    if(GET_INSTANCE(misc, obj)->is_exist(CFGSDB_FLASH) < 0) {
 	    printf("%s not exist\n", CFGSDB_FLASH);
-        if(GET_INSTANCE(ops_misc)->is_exist(PERSIST_CFGSDB_FLASH) < 0) {
+        if(GET_INSTANCE(misc, obj)->is_exist(PERSIST_CFGSDB_FLASH) < 0) {
             //copy default cfg to CFGSDB_FLASH from /etc
-            if(GET_INSTANCE(ops_misc)->is_exist(CFGSDB_DEF) < 0) {
+            if(GET_INSTANCE(misc, obj)->is_exist(CFGSDB_DEF) < 0) {
                 printf("default cfg not exist[%s]\n", CFGSDB_DEF);
             } else {
 		printf("copy /etc/iopc/cfgs to /persist\n");
@@ -347,8 +348,8 @@ static void set_string_flash(uint8_t* key, uint8_t* val)
 
 //static struct ops_cfg_bdb_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb);
-DEFINE_GET_INSTANCE(ops_cfg_bdb)
+DEFINE_INSTANCE(cfg_bdb, ifc);
+DEFINE_GET_INSTANCE(cfg_bdb, ifc)
 {
     if(!obj) {
         obj = malloc(sizeof(struct ops_cfg_bdb_t));
@@ -376,7 +377,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb)
+DEFINE_DEL_INSTANCE(cfg_bdb, ifc)
 {
     if(obj)
         free(obj);

@@ -1,29 +1,16 @@
 #ifndef IOPCOPS_CFG_BDB_H
 #define IOPCOPS_CFG_BDB_H
 
-#if 0
-#define DB_TYPE_STRING	"STRING"
-#define DB_TYPE_UINT32	"UINT32"
-#define DB_TYPE_BOOLEAN	"_BOOL_"
+#include "iopcdefine.h"
+#include "iopcops_cfg.h"
 
-/*
-#define DB_TYPE_UNKNOW	0x00
-#define DB_TYPE_STRING	0x01
-#define DB_TYPE_INT	0x02
-#define DB_TYPE_BOOLEAN	0x03
-*/
-#define DB_MEDIA_UNKNOW	0x00
-#define DB_MEDIA_FLASH	0x01
-#define DB_MEDIA_RAM	0x02
-#endif
+#define GET_BOOLEAN(KEY)	GET_INSTANCE(cfg_bdb, ifc)->get_boolean_flash(KEY)
+#define GET_UINT32(KEY)		GET_INSTANCE(cfg_bdb, ifc)->get_uint32_flash(KEY)
+#define GET_STRING(KEY, VAL)	GET_INSTANCE(cfg_bdb, ifc)->get_string_flash(KEY, VAL)
 
-#define GET_BOOLEAN(KEY)	GET_INSTANCE(ops_cfg_bdb)->get_boolean_flash(KEY)
-#define GET_UINT32(KEY)		GET_INSTANCE(ops_cfg_bdb)->get_uint32_flash(KEY)
-#define GET_STRING(KEY, VAL)	GET_INSTANCE(ops_cfg_bdb)->get_string_flash(KEY, VAL)
-
-#define SET_BOOLEAN(KEY, VAL)	GET_INSTANCE(ops_cfg_bdb)->set_boolean_flash(KEY, VAL)
-#define SET_UINT32(KEY, VAL)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_flash(KEY, VAL)
-#define SET_STRING(KEY, VAL)	GET_INSTANCE(ops_cfg_bdb)->set_string_flash(KEY, VAL)
+#define SET_BOOLEAN(KEY, VAL)	GET_INSTANCE(cfg_bdb, ifc)->set_boolean_flash(KEY, VAL)
+#define SET_UINT32(KEY, VAL)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_flash(KEY, VAL)
+#define SET_STRING(KEY, VAL)	GET_INSTANCE(cfg_bdb, ifc)->set_string_flash(KEY, VAL)
 
 struct ops_cfg_bdb_t {
     void (*init)(void);
@@ -50,7 +37,7 @@ struct ops_cfg_bdb_t {
     void (*set_string_flash)(uint8_t* key, uint8_t* val);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb);
+DEFINE_GET_INSTANCE(cfg_bdb, ifc);
+DEFINE_DEL_INSTANCE(cfg_bdb, ifc);
 
 #endif

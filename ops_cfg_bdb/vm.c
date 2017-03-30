@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_vm.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_vm.h"
 
@@ -18,7 +20,7 @@
 
 static void loadall()
 {
-    GET_INSTANCE(ops_cfg_bdb)->init();
+    GET_INSTANCE(cfg_bdb, ifc)->init();
 }
 
 static uint32_t get_cfg_size(void)
@@ -189,11 +191,11 @@ static uint32_t add_vm(uint8_t autostart, uint8_t* name, uint8_t* base_path, uin
 
 //static struct ops_cfg_bdb_vm_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb_vm);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_vm)
+DEFINE_INSTANCE(cfg_vm, bdb);
+DEFINE_GET_INSTANCE(cfg_vm, bdb)
 {
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_vm_t));
+        obj = malloc(sizeof(struct ops_cfg_vm_t));
 	obj->loadall = loadall;
 	obj->get_cfg_size = get_cfg_size;
 	obj->set_cfg_size = set_cfg_size;
@@ -216,7 +218,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_vm)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_vm)
+DEFINE_DEL_INSTANCE(cfg_vm, bdb)
 {
     if(obj)
         free(obj);

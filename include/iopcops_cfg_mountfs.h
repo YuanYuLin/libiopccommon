@@ -1,7 +1,9 @@
-#ifndef IOPCOPS_CFG_BDB_MOUNTFS_H
-#define IOPCOPS_CFG_BDB_MOUNTFS_H
+#ifndef IOPCOPS_CFG_MOUNTFS_H
+#define IOPCOPS_CFG_MOUNTFS_H
 
-struct ops_cfg_bdb_mountfs_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_mountfs_t {
     void (*loadall)(void);
     uint32_t (*get_no_of_size)();
     uint16_t (*get_name)(uint8_t idx_cfg, uint8_t* cfg_val);
@@ -10,7 +12,7 @@ struct ops_cfg_bdb_mountfs_t {
     uint16_t (*get_src)(uint8_t idx_cfg, uint8_t* cfg_val);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_mountfs);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_mountfs);
+DEFINE_GET_INSTANCE(cfg_mountfs, ifc);
+DEFINE_DEL_INSTANCE(cfg_mountfs, ifc);
 
 #endif

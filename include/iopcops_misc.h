@@ -22,8 +22,8 @@ struct ops_misc_t {
 };
 
 //extern struct ops_misc_t ops_misc;
-DEFINE_GET_INSTANCE(ops_misc);
-DEFINE_DEL_INSTANCE(ops_misc);
+DEFINE_GET_INSTANCE(misc, obj);
+DEFINE_DEL_INSTANCE(misc, obj);
 //struct ops_misc_t* create_instance_ops_misc(void);
 //void destroy_instance_ops_misc(struct ops_misc_t* obj);
 #endif

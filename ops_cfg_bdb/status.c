@@ -11,6 +11,8 @@
 #include <stdint.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_status.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_status.h"
 
@@ -21,15 +23,15 @@
 #define SERVICE_STATUS_STOPING		0x03
 #define SERVICE_STATUS_STOPED		0x04
 
-#define SET_SERVICE_STARTING(NAME)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_ram(NAME, SERVICE_STATUS_STARTING)
-#define SET_SERVICE_STOPING(NAME)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_ram(NAME, SERVICE_STATUS_STOPING)
-#define SET_SERVICE_STARTED(NAME)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_ram(NAME, SERVICE_STATUS_STARTED)
-#define SET_SERVICE_STOPED(NAME)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_ram(NAME, SERVICE_STATUS_STOPED)
-#define GET_SERVICE_STATUS(NAME)	GET_INSTANCE(ops_cfg_bdb)->get_uint32_ram(NAME)
+#define SET_SERVICE_STARTING(NAME)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_ram(NAME, SERVICE_STATUS_STARTING)
+#define SET_SERVICE_STOPING(NAME)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_ram(NAME, SERVICE_STATUS_STOPING)
+#define SET_SERVICE_STARTED(NAME)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_ram(NAME, SERVICE_STATUS_STARTED)
+#define SET_SERVICE_STOPED(NAME)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_ram(NAME, SERVICE_STATUS_STOPED)
+#define GET_SERVICE_STATUS(NAME)	GET_INSTANCE(cfg_bdb, ifc)->get_uint32_ram(NAME)
 
 #define PROGRESS_STATUS	"status.progress"
-#define GET_PROGRESS_STATUS(NAME)	GET_INSTANCE(ops_cfg_bdb)->get_uint32_ram(NAME)
-#define SET_PROGRESS_STATUS(NAME, STATUS)	GET_INSTANCE(ops_cfg_bdb)->set_uint32_ram(NAME, STATUS)
+#define GET_PROGRESS_STATUS(NAME)	GET_INSTANCE(cfg_bdb, ifc)->get_uint32_ram(NAME)
+#define SET_PROGRESS_STATUS(NAME, STATUS)	GET_INSTANCE(cfg_bdb, ifc)->set_uint32_ram(NAME, STATUS)
 
 /*
 #define SET_SERVICE_STARTING(NAME)
@@ -153,11 +155,11 @@ static void set_progress_status(uint8_t* name, uint32_t status)
 
 //static struct ops_cfg_bdb_status_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb_status);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_status)
+DEFINE_INSTANCE(cfg_status, bdb);
+DEFINE_GET_INSTANCE(cfg_status, bdb)
 {
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_status_t));
+        obj = malloc(sizeof(struct ops_cfg_status_t));
 	obj->get_service_status = get_service_status;
 	obj->is_service_started = is_service_started;
 	obj->is_service_stoped = is_service_stoped;
@@ -177,7 +179,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_status)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_status)
+DEFINE_DEL_INSTANCE(cfg_status, bdb)
 {
     if(obj)
         free(obj);

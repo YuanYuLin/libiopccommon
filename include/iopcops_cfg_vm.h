@@ -1,7 +1,9 @@
-#ifndef IOPCOPS_CFG_BDB_VM_H
-#define IOPCOPS_CFG_BDB_VM_H
+#ifndef IOPCOPS_CFG_VM_H
+#define IOPCOPS_CFG_VM_H
 
-struct ops_cfg_bdb_vm_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_vm_t {
     void        (*loadall)(void);
     uint32_t	(*get_cfg_size)(void);
     void	(*set_cfg_size)(uint32_t);
@@ -20,7 +22,7 @@ struct ops_cfg_bdb_vm_t {
     uint32_t	(*add_vm)(uint8_t, uint8_t*, uint8_t*, uint8_t*, uint8_t*, uint8_t*);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_vm);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_vm);
+DEFINE_GET_INSTANCE(cfg_vm, ifc);
+DEFINE_DEL_INSTANCE(cfg_vm, ifc);
 
 #endif

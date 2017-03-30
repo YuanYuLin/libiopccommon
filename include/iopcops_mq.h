@@ -13,6 +13,6 @@ struct ops_mq_t {
 };
 
 //extern struct ops_mq_t ops_mq;
-DEFINE_GET_INSTANCE(ops_mq);
-DEFINE_DEL_INSTANCE(ops_mq);
+DEFINE_GET_INSTANCE(mq, obj);
+DEFINE_DEL_INSTANCE(mq, obj);
 #endif

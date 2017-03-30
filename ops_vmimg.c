@@ -14,7 +14,7 @@
 #include <dlfcn.h>
 #include <pthread.h>
 
-#include "iopcdefine.h"
+#include "include/iopcdefine.h"
 #include "iopcops_misc.h"
 //#include "iopcops_mq.h"
 //#include "iopccmd_service.h"
@@ -112,12 +112,12 @@ static uint8_t bind2loop(uint32_t index, uint8_t* squashfs_file)
 
     get_header(squashfs_file, &vmimg);
     offset = vmimg.bin_offset;
-    GET_INSTANCE(ops_misc)->bind_loopdev(squashfs_file, loop_dev, offset);
+    GET_INSTANCE(misc, obj)->bind_loopdev(squashfs_file, loop_dev, offset);
 }
 
 //static struct ops_vmimg_t* obj = NULL;
-DEFINE_INSTANCE(ops_vmimg);
-DEFINE_GET_INSTANCE(ops_vmimg)
+DEFINE_INSTANCE(vmimg, obj);
+DEFINE_GET_INSTANCE(vmimg, obj)
 {
     if(!obj) {
         obj = malloc(sizeof(struct ops_vmimg_t));
@@ -127,7 +127,7 @@ DEFINE_GET_INSTANCE(ops_vmimg)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_vmimg)
+DEFINE_DEL_INSTANCE(vmimg, obj)
 {
     if(obj)
         free(obj);

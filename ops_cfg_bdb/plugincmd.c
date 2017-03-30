@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_plugincmd.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_plugincmd.h"
 
@@ -15,7 +17,7 @@
 
 static void loadall()
 {
-    GET_INSTANCE(ops_cfg_bdb)->init();
+    GET_INSTANCE(cfg_bdb, ifc)->init();
 }
 
 static uint32_t get_size(void)
@@ -83,11 +85,11 @@ static uint16_t get_name(uint8_t idx_cfg, uint8_t* cfg_val)
     return result;
 }
 
-DEFINE_INSTANCE(ops_cfg_bdb_plugincmd);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_plugincmd)
+DEFINE_INSTANCE(cfg_plugincmd, bdb);
+DEFINE_GET_INSTANCE(cfg_plugincmd, bdb)
 {
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_plugincmd_t));
+        obj = malloc(sizeof(struct ops_cfg_plugincmd_t));
 	obj->loadall = loadall;
 	obj->get_size = get_size;
 	obj->get_enabled = get_enabled;
@@ -100,7 +102,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_plugincmd)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_plugincmd)
+DEFINE_DEL_INSTANCE(cfg_plugincmd, bdb)
 {
     if(obj)
         free(obj);

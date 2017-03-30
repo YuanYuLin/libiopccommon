@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_platform.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_platform.h"
 
@@ -33,7 +35,7 @@
 
 static void loadall()
 {
-    GET_INSTANCE(ops_cfg_bdb)->init();
+//    GET_INSTANCE(cfg_bdb, ifc)->init();
 }
 
 static uint8_t is_host(uint8_t idx_cfg) 
@@ -383,12 +385,12 @@ static void set_raid_device_path(uint8_t idx_cfg, uint8_t idx_raid, uint8_t idx_
 
 //static struct ops_cfg_bdb_platform_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb_platform);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_platform)
+DEFINE_INSTANCE(cfg_platform, bdb);
+DEFINE_GET_INSTANCE(cfg_platform, bdb)
 {
 //    struct ops_cfg_platform_t* obj = NULL;
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_platform_t));
+        obj = malloc(sizeof(struct ops_cfg_platform_t));
 	obj->loadall = loadall;
 //	obj->get_cfg_idx = get_cfg_idx;
 //	obj->set_cfg_idx = set_cfg_idx;
@@ -432,7 +434,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_platform)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_platform)
+DEFINE_DEL_INSTANCE(cfg_platform, bdb)
 {
     if(obj)
         free(obj);

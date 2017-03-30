@@ -1,7 +1,9 @@
-#ifndef IOPCOPS_CFG_BDB_NETWORK_H
-#define IOPCOPS_CFG_BDB_NETWORK_H
+#ifndef IOPCOPS_CFG_NETWORK_H
+#define IOPCOPS_CFG_NETWORK_H
 
-struct ops_cfg_bdb_network_t {
+#include "iopcdefine.h"
+
+struct ops_cfg_network_t {
     void	(*loadall)(void);
     uint32_t	(*get_no_networks)(void);
     uint8_t	(*get_type)(uint8_t);
@@ -17,7 +19,7 @@ struct ops_cfg_bdb_network_t {
     uint16_t 	(*get_consist_interfaces)(uint8_t, uint8_t, uint8_t*);
 };
 
-DEFINE_GET_INSTANCE(ops_cfg_bdb_network);
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_network);
+DEFINE_GET_INSTANCE(cfg_network, ifc);
+DEFINE_DEL_INSTANCE(cfg_network, ifc);
 
 #endif

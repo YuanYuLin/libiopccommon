@@ -106,8 +106,8 @@ struct ops_mq_t ops_mq = {
 //static struct ops_mq_t* obj = NULL;
 #endif
 
-DEFINE_INSTANCE(ops_mq);
-DEFINE_GET_INSTANCE(ops_mq)
+DEFINE_INSTANCE(mq, obj);
+DEFINE_GET_INSTANCE(mq, obj)
 {
 //    struct ops_mq_t* obj = NULL;
     if(!obj) {
@@ -123,7 +123,7 @@ DEFINE_GET_INSTANCE(ops_mq)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_mq)
+DEFINE_DEL_INSTANCE(mq, obj)
 {
     if(obj)
         free(obj);

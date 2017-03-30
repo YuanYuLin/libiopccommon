@@ -8,7 +8,7 @@ struct ops_vmimg_t {
     uint8_t (*bind2loop)(uint32_t index, uint8_t* squashfs_file);
 };
 
-DEFINE_GET_INSTANCE(ops_vmimg);
-DEFINE_DEL_INSTANCE(ops_vmimg);
+DEFINE_GET_INSTANCE(vmimg, obj);
+DEFINE_DEL_INSTANCE(vmimg, obj);
 
 #endif

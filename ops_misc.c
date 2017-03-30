@@ -15,7 +15,7 @@
 #include <pthread.h>
 #include <mntent.h> 
 
-#include "iopcdefine.h"
+#include "include/iopcdefine.h"
 #include "iopcops_misc.h"
 #include "iopcops_mq.h"
 #include "iopccmd_service.h"
@@ -426,7 +426,7 @@ static void post_to_background(uint8_t* libname, uint8_t* funcname)
     req.hdr.cmd = 0x55;
     req.hdr.data_size = sizeof(req_background->libname_len) + sizeof(req_background->funcname_len) + req_background->libname_len + req_background->funcname_len;
 
-    GET_INSTANCE(ops_mq)->set_to(req.hdr.dst, &req);
+    GET_INSTANCE(mq, obj)->set_to(req.hdr.dst, &req);
 }
 
 static void create_task(task_start_fn_t task_start)
@@ -477,8 +477,8 @@ static struct ops_misc_t ops_misc = {
 //static struct ops_misc_t* obj = NULL;
 
 //struct ops_misc_t* create_instance_ops_misc()
-DEFINE_INSTANCE(ops_misc);
-DEFINE_GET_INSTANCE(ops_misc)
+DEFINE_INSTANCE(misc, obj);
+DEFINE_GET_INSTANCE(misc, obj)
 {
 //    struct ops_misc_t* obj = NULL;
     if(!obj) {
@@ -505,7 +505,7 @@ DEFINE_GET_INSTANCE(ops_misc)
 }
 
 //void destroy_instance_ops_misc(struct ops_misc_t* obj)
-DEFINE_DEL_INSTANCE(ops_misc)
+DEFINE_DEL_INSTANCE(misc, obj)
 {
     if(obj)
         free(obj);

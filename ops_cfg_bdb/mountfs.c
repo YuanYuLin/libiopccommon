@@ -5,6 +5,8 @@
 #include <string.h>
 
 #include "iopcdefine.h"
+#include "iopcops_cfg.h"
+#include "iopcops_cfg_mountfs.h"
 #include "iopcops_cfg_bdb.h"
 #include "iopcops_cfg_bdb_mountfs.h"
 
@@ -16,7 +18,7 @@
 
 static void loadall()
 {
-    GET_INSTANCE(ops_cfg_bdb)->init();
+    GET_INSTANCE(cfg_bdb, ifc)->init();
 }
 
 static uint32_t get_no_of_size()
@@ -82,11 +84,11 @@ static uint16_t get_src(uint8_t idx_cfg, uint8_t* cfg_val)
 
 //static struct ops_cfg_bdb_mountfs_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_bdb_mountfs);
-DEFINE_GET_INSTANCE(ops_cfg_bdb_mountfs)
+DEFINE_INSTANCE(cfg_mountfs, bdb);
+DEFINE_GET_INSTANCE(cfg_mountfs, bdb)
 {
     if(!obj) {
-        obj = malloc(sizeof(struct ops_cfg_bdb_mountfs_t));
+        obj = malloc(sizeof(struct ops_cfg_mountfs_t));
 	obj->loadall = loadall;
 	obj->get_no_of_size = get_no_of_size;
 	obj->get_name = get_name;
@@ -98,7 +100,7 @@ DEFINE_GET_INSTANCE(ops_cfg_bdb_mountfs)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_bdb_mountfs)
+DEFINE_DEL_INSTANCE(cfg_mountfs, bdb)
 {
     if(obj)
         free(obj);
