@@ -7,6 +7,7 @@
 
 #include "iopcdefine.h"
 #include "iopcops_cfg.h"
+#include "iopcops_cfg_bdb.h"
 
 static void init()
 {
@@ -15,7 +16,7 @@ static void init()
 
 static void show_all(uint8_t* cfg_file)
 {
-    GET_INSTANCE(cfg_bdb, ifc)->show_all(cfg_file)
+    GET_INSTANCE(cfg_bdb, ifc)->show_all(cfg_file);
 }
 
 DEFINE_INSTANCE(cfg, ifc);
