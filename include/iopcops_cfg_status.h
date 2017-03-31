@@ -20,4 +20,6 @@ struct ops_cfg_status_t {
 DEFINE_GET_INSTANCE(cfg_status, ifc);
 DEFINE_DEL_INSTANCE(cfg_status, ifc);
 
+#define GET_INSTANCE_CFG_STATUS() GET_INSTANCE(cfg_status, ifc)
+
 #endif

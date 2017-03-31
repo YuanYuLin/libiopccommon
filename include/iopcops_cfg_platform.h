@@ -47,4 +47,6 @@ struct ops_cfg_platform_t {
 DEFINE_GET_INSTANCE(cfg_platform, ifc);
 DEFINE_DEL_INSTANCE(cfg_platform, ifc);
 
+#define GET_INSTANCE_CFG_PLATFORM() GET_INSTANCE(cfg_platform, ifc)
+
 #endif

@@ -16,6 +16,7 @@ SRC += ops_misc.c
 SRC += ops_vmimg.c
 SRC += ops_mq.c
 
+SRC += ops_cfg/dao.c
 SRC += ops_cfg/platform.c
 SRC += ops_cfg/network.c
 SRC += ops_cfg/mountfs.c

@@ -381,8 +381,8 @@ static void show_cfg(struct cfg_json_t* cfg, char* index_key)
 
 //static struct ops_cfg_json_t* obj = NULL;
 
-DEFINE_INSTANCE(ops_cfg_json);
-DEFINE_GET_INSTANCE(ops_cfg_json)
+DEFINE_INSTANCE(cfg_json, ifc);
+DEFINE_GET_INSTANCE(cfg_json, ifc)
 {
     if(!obj) {
         obj = malloc(sizeof(struct ops_cfg_json_t));
@@ -402,7 +402,7 @@ DEFINE_GET_INSTANCE(ops_cfg_json)
     return obj;
 }
 
-DEFINE_DEL_INSTANCE(ops_cfg_json)
+DEFINE_DEL_INSTANCE(cfg_json, ifc)
 {
     if(obj)
         free(obj);

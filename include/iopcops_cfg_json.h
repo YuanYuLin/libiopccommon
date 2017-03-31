@@ -18,7 +18,7 @@ struct ops_cfg_json_t {
     int (*get_array_size)(uint8_t* err_code, struct cfg_json_t* cfg, char* index_key);
 };
 
-DEFINE_GET_INSTANCE(dao, json);
-DEFINE_DEL_INSTANCE(dao, json);
+DEFINE_GET_INSTANCE(ops_cfg_json);
+DEFINE_DEL_INSTANCE(ops_cfg_json);
 
 #endif

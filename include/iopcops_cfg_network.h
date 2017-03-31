@@ -22,4 +22,5 @@ struct ops_cfg_network_t {
 DEFINE_GET_INSTANCE(cfg_network, ifc);
 DEFINE_DEL_INSTANCE(cfg_network, ifc);
 
+#define GET_INSTANCE_CFG_NETWORK() GET_INSTANCE(cfg_network, ifc)
 #endif

@@ -15,4 +15,5 @@ struct ops_cfg_mountfs_t {
 DEFINE_GET_INSTANCE(cfg_mountfs, ifc);
 DEFINE_DEL_INSTANCE(cfg_mountfs, ifc);
 
+#define GET_INSTANCE_CFG_MOUNTFS() GET_INSTANCE(cfg_mountfs, ifc)
 #endif

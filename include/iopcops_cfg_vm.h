@@ -25,4 +25,5 @@ struct ops_cfg_vm_t {
 DEFINE_GET_INSTANCE(cfg_vm, ifc);
 DEFINE_DEL_INSTANCE(cfg_vm, ifc);
 
+#define GET_INSTANCE_CFG_VM() GET_INSTANCE(cfg_vm, ifc)
 #endif

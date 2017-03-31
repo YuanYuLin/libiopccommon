@@ -16,4 +16,6 @@ struct ops_cfg_plugincmd_t {
 DEFINE_GET_INSTANCE(cfg_plugincmd, ifc);
 DEFINE_DEL_INSTANCE(cfg_plugincmd, ifc);
 
+#define GET_INSTANCE_CFG_PLUGINCMD() GET_INSTANCE(cfg_plugincmd, ifc)
+
 #endif
