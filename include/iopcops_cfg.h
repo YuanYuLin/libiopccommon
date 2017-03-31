@@ -3,6 +3,7 @@
 
 struct ops_cfg_t {
     void (*init)(void);
+    void (*show_all)(uint8_t* cfg_file);
 };
 
 DEFINE_GET_INSTANCE(cfg, ifc);

@@ -3,7 +3,7 @@
 
 #include "iopc_raiddevinfo.h"
 
-struct client_raiddev_t {
+struct ops_client_raiddev_t {
     uint32_t (*count)();
     int (*set)(uint8_t index, struct raiddev_info_t* info);
     int (*get)(uint8_t index, struct raiddev_info_t* info);
