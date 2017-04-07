@@ -1,0 +1,3 @@
+
+def MAIN():
+    print "teest"

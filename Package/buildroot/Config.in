@@ -1,0 +1,5 @@
+config BR2_PACKAGE_LIBIOPCCOMMON
+	bool "libiopccommon"
+	select BR2_PACKAGE_JSON_C
+	help
+	  The common library of IOPC.
