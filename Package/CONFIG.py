@@ -1,3 +1,4 @@
+import ops
 
-def MAIN():
+def MAIN(args):
     print "teest"
