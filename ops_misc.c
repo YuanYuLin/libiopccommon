@@ -183,7 +183,7 @@ static int create_system_by_node(struct root_t *node)
 	break;
 	case ROOT_TYPE_CREATE_FILE:
 	    creat(node->opt1.ptr, (mode_t)node->opt2.mode);
-	    printf("CREATE_FILE MODE %x\n", node->opt2.ptr);
+	    printf("CREATE_FILE MODE %x\n", node->opt2.mode);
 	break;
 	case ROOT_TYPE_MOUNT_PROC:
 	    mount("proc", node->opt1.ptr, "proc", node->flags, node->opt2.ptr);
@@ -298,7 +298,7 @@ static int plugin_new_task(uint8_t* full_path, callback_task_fn_t callback)
     pthread_t task_id;
 
     if(is_exist(full_path) < 0) {
-        printf("[%s] is not exist!\n");
+        printf("[%s] is not exist!\n", full_path);
     }
 
     dl_handle = dlopen((const char*)full_path, RTLD_LAZY);
@@ -387,7 +387,7 @@ static int is_netdev_up(uint8_t *dev)
 {
     int fd = -1;
     struct ifreq ifr;
-    printf("run is_netdev_up(%d)\n", dev);
+    printf("run is_netdev_up(%s)\n", dev);
     fd = get_ctl_fd();
     memset((void*)&ifr, 0, sizeof(ifr));
     memcpy(ifr.ifr_name, dev, strlen(dev));

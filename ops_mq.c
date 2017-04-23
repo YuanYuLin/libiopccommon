@@ -53,7 +53,7 @@ static int get(mqd_t mqd, struct msg_t* msg)
 
     msg_size = mq_receive(mqd, ptr, attr.mq_msgsize, NULL);
     if(msg_size < 0) {
-        printf("MQ_RCV:%d:%d\n", errno, attr.mq_msgsize);
+        printf("MQ_RCV:%d:%ld\n", errno, attr.mq_msgsize);
 	return 0;
     }
 

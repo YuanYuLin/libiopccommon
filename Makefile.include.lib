@@ -20,10 +20,8 @@ all: $(TARGET)
 	@rm -f $@
 	$(CC) $(CFLAGS) -c $< -o $@
 
-version:
-	bash gen_version.sh > version.h
 
-$(TARGET): version $(OBJS)
+$(TARGET): $(OBJS)
 	$(CC) $(LDFLAGS) $(OBJS) -o $@
 
 clean:

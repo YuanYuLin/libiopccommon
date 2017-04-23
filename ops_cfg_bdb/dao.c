@@ -220,7 +220,7 @@ static uint8_t get_boolean(uint8_t* media, uint8_t* key)
     val_len = get_type_value(media, key, &type[0], val_str);
     val = (uint8_t)strtol(val_str, NULL, 10);
     if(0)
-        printf("%s() type:%s val:%s, len:%d\n", type, val_str, val_len);
+        printf("%s() type:%s val:%s, len:%d\n", __func__, type, val_str, val_len);
     free(val_str);
 
 //    printf("%s() %d, %d\n", __func__, val_len, val);
